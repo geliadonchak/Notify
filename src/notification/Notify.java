@@ -28,7 +28,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.awt.*;
@@ -45,19 +44,15 @@ public class Notify {
     private final String title;
     private final String message;
     private final String appName;
-    private final String musicPathURL;
     private final Stage popup;
-    private final VBox content;
 
     public Notify(Builder builder) {
         this.title = builder.title;
         this.message = builder.message;
         this.appName = builder.appName;
-        this.musicPathURL = builder.musicPathURL;
-
         this.parameters = builder.parameters;
         this.popup = builder.popup;
-        this.content = builder.content;
+        VBox content = builder.content;
     }
 
     public String getTitle() {
@@ -119,8 +114,6 @@ public class Notify {
         final ComboBox<String> comboBox = new ComboBox<>();
         private static final ArrayList<String> arrayListComboBox = new ArrayList<>();
         private TextField textField;
-
-        private final String musicPathURL = "https://wav-library.net/sounds/0-0-1-17216-20";
 
         private String newValueTextField;
         private String title;
@@ -359,21 +352,21 @@ public class Notify {
             actionsContent.setPadding(new Insets(5));
 
             if (this.okButtonListener != null) {
-                Button mPositiveButton = new Button(this.okButtonText);
-                mPositiveButton.setPrefWidth(actionsContent.getPrefWidth());
-                mPositiveButton.setStyle("-fx-background-color: #626262; -fx-text-fill: white");
-                mPositiveButton.setOnAction(this.okButtonListener);
-                mPositiveButton.addEventFilter(MouseEvent.MOUSE_PRESSED, MouseEvent -> closeAnimation());
-                actionsContent.getChildren().add(mPositiveButton);
+                Button okButton = new Button(this.okButtonText);
+                okButton.setPrefWidth(actionsContent.getPrefWidth());
+                okButton.setStyle("-fx-background-color: #626262; -fx-text-fill: white");
+                okButton.setOnAction(this.okButtonListener);
+                okButton.addEventFilter(MouseEvent.MOUSE_PRESSED, MouseEvent -> closeAnimation());
+                actionsContent.getChildren().add(okButton);
             }
 
             if (this.cancelButtonListener != null) {
-                Button mNegativeButton = new Button(this.cancelButtonText);
-                mNegativeButton.setPrefWidth(actionsContent.getPrefWidth());
-                mNegativeButton.setStyle("-fx-background-color: #626262; -fx-text-fill: white");
-                mNegativeButton.setOnAction(this.cancelButtonListener);
-                mNegativeButton.addEventFilter(MouseEvent.MOUSE_PRESSED, MouseEvent -> closeAnimation());
-                actionsContent.getChildren().add(mNegativeButton);
+                Button cancelButton = new Button(this.cancelButtonText);
+                cancelButton.setPrefWidth(actionsContent.getPrefWidth());
+                cancelButton.setStyle("-fx-background-color: #626262; -fx-text-fill: white");
+                cancelButton.setOnAction(this.cancelButtonListener);
+                cancelButton.addEventFilter(MouseEvent.MOUSE_PRESSED, MouseEvent -> closeAnimation());
+                actionsContent.getChildren().add(cancelButton);
             }
 
             content.getChildren().add(actionsContent);
@@ -468,9 +461,7 @@ public class Notify {
                     animation.setFromAngle(xDirection == 1 ? 0 : 360);
                     animation.setToAngle(xDirection == 1 ? 360 : 0);
                     animation.setCycleCount(1);
-                    animation.setOnFinished(event -> {
-                        popup.close();
-                    });
+                    animation.setOnFinished(event -> popup.close());
                     animation.play();
                 }
                 case TRANSPARENT -> {
@@ -478,17 +469,13 @@ public class Notify {
                     animation.setFromValue(1);
                     animation.setToValue(0);
                     animation.setCycleCount(1);
-                    animation.setOnFinished(event -> {
-                        popup.close();
-                    });
+                    animation.setOnFinished(event -> popup.close());
                     animation.play();
                 }
                 case DISPLAY -> {
                     TranslateTransition animation = new TranslateTransition(Builder.ANIMATION_DURATION, content);
                     animation.setByX(xDirection * Builder.POPUP_WIDTH);
-                    animation.setOnFinished(event -> {
-                        popup.close();
-                    });
+                    animation.setOnFinished(event -> popup.close());
                     animation.play();
                 }
             }

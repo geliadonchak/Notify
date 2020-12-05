@@ -16,7 +16,7 @@ public class Main extends Application {
                 .title("Уведомление!")
                 .message("Какой-то текст")
                 .appName("Название приложения")
-                .backgroundOpacity(1)
+                .iconPathURL("https://yt3.ggpht.com/a/AATXAJzrZnDG0bZJwgw4Bg1BpvS4dRqLzE5ZcQXFcIe9=s900-c-k-c0xffffffff-no-rj-mo")
                 .textInput()
                 .comboBox("Ubuntu", "Ubuntu", "Fedora", "Mint", "Debian", "Arch", "ElementaryOS", "Gentoo")
                 .okButton("OK", event -> {
@@ -24,7 +24,8 @@ public class Main extends Application {
                     System.out.println(notifyJava.getComboBoxValue());
                 })
                 .cancelButton("CANCEL", event -> System.out.println("cancel"))
-                .iconPathURL("https://yt3.ggpht.com/a/AATXAJzrZnDG0bZJwgw4Bg1BpvS4dRqLzE5ZcQXFcIe9=s900-c-k-c0xffffffff-no-rj-mo")
                 .build();
     }
 }
+
+

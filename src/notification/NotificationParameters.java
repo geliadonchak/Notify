@@ -13,14 +13,14 @@ public class NotificationParameters {
     private String iconPathURL;
 
     NotificationParameters() {
-        waitTime = Notify.Durability.SHORT;
+        waitTime = Notify.Durability.NEVER;
         animation = Notify.Animation.DISPLAY;
         position = Notify.Position.RIGHT_BOTTOM;
         iconBorder = Notify.Border.CIRCLE;
         sound = Notify.Sounds.ICQ;
         textColorTitle = "#FFFFFF";
-        textColorMessage = "#b0b0b0";
-        backgroundColor = "#1c1c1c";
+        textColorMessage = "#b3b3b3";
+        backgroundColor = "#262626";
         backgroundOpacity = 1;
     }
 
